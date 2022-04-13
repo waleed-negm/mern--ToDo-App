@@ -1,0 +1,12 @@
+require("dotenv").config();
+const tasks = require("./routes/tasks");
+const connection = require("./db.js");
+const cors = require("cors");
+const express = require("express");
+const app = express();
+connection();
+app.use(express.json());
+app.use(cors());
+app.use("/api/tasks", tasks);
+const port = process.env.PORT;
+app.listen(port, () => console.log(`server runnig on port ${port}`));
